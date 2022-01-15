@@ -7,6 +7,6 @@ class LoginContract {
     }
 
     interface Presenter {
-        fun login(emailId: String, password: String)
+        fun login(emailId: String, password: String, rememberMe: Boolean)
     }
 }

@@ -6,9 +6,13 @@ object APIConstants {
     const val BASE_IMAGE_URL = "https://psmobitech.com/myshop/images/"
 
     // ENDPOINTS
+    const val ENDPOINT_REGISTER = "User/register"
     const val ENDPOINT_LOGIN = "User/auth"
 
     // KEYS
+    const val KEY_FULL_NAME = "full_name"
+    const val KEY_MOBILE_NO = "mobile_no"
     const val KEY_EMAIL_ID = "email_id"
     const val KEY_PASSWORD = "password"
+
 }

@@ -12,24 +12,33 @@ import com.example.groceryapp.presenter.login.LoginPresenter
 class LoginActivity : AppCompatActivity(), LoginContract.View {
     lateinit var binding: ActivityLoginBinding
     lateinit var presenter: LoginPresenter
+    lateinit var volleyRequestHandler: VolleyRequestHandler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val volleyRequestHandler = VolleyRequestHandler(this)
+        volleyRequestHandler = VolleyRequestHandler(this)
         presenter = LoginPresenter(volleyRequestHandler, this)
         
         binding.btnLogin.setOnClickListener {
             login()
         }
 
+        binding.tvRegister.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
+
     }
 
+    /*
+        Email: michael@gmail.com
+        Password: password
+     */
     private fun login() {
         binding.apply {
-            presenter.login(etEmail.text.toString(), etPassword.text.toString())
+            presenter.login(etEmail.text.toString(), etPassword.text.toString(), binding.cbRememberMe.isChecked)
         }
     }
 
