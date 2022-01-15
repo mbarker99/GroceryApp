@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">GroceryApp</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_password">Login</string>
+    <string name="link_register">Don\'t have an account? <u>Register</u></string>
 </resources>
