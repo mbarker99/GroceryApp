@@ -3,15 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/drawable/ic_categories.xml" value="0.27521367521367524" />
         <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/drawable/ic_login_icon.xml" value="0.30185185185185187" />
         <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/drawable/ic_mobile_icon.xml" value="0.31296296296296294" />
         <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/drawable/ic_password_icon.xml" value="0.30185185185185187" />
+        <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/drawable/ic_search.xml" value="0.46623931623931625" />
         <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/drawable/ic_shopping_cart.xml" value="0.30185185185185187" />
         <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/drawable/ic_user_icon.xml" value="0.5555555555555556" />
-        <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/activity_dashboard.xml" value="0.5520833333333334" />
-        <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/activity_login.xml" value="0.25925925925925924" />
+        <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/activity_dashboard.xml" value="0.261965811965812" />
+        <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/activity_login.xml" value="0.34868421052631576" />
         <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/activity_main.xml" value="0.38333333333333336" />
         <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/activity_register.xml" value="0.512962962962963" />
+        <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/fragment_cart.xml" value="0.261965811965812" />
+        <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/fragment_categories.xml" value="0.2504273504273504" />
+        <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/item_view_category.xml" value="0.261965811965812" />
+        <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/menu/menu_categories.xml" value="0.261965811965812" />
+        <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/menu/menu_navigation_drawer.xml" value="0.261965811965812" />
       </map>
     </option>
   </component>

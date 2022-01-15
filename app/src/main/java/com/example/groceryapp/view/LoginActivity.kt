@@ -1,5 +1,6 @@
 package com.example.groceryapp.view
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,13 +22,19 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
         volleyRequestHandler = VolleyRequestHandler(this)
         presenter = LoginPresenter(volleyRequestHandler, this)
-        
+
         binding.btnLogin.setOnClickListener {
             login()
         }
 
         binding.tvRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
+        }
+
+        val sharedPreferences = getSharedPreferences("login_details", Context.MODE_PRIVATE)
+        if (sharedPreferences.contains("user_id")) {
+            startActivity(Intent(this, DashboardActivity::class.java))
+            finish()
         }
 
     }
@@ -38,7 +45,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
      */
     private fun login() {
         binding.apply {
-            presenter.login(etEmail.text.toString(), etPassword.text.toString(), binding.cbRememberMe.isChecked)
+            presenter.login(etEmail.text.toString(), etPassword.text.toString())
         }
     }
 

@@ -8,6 +8,7 @@ object APIConstants {
     // ENDPOINTS
     const val ENDPOINT_REGISTER = "User/register"
     const val ENDPOINT_LOGIN = "User/auth"
+    const val ENDPOINT_CATEGORY = "Category"
 
     // KEYS
     const val KEY_FULL_NAME = "full_name"

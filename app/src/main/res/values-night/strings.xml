@@ -5,4 +5,8 @@
     <string name="link_register">Don\'t have an account? <u>Register</u></string>
     <string name="hint_full_name">Full Name</string>
     <string name="hint_mobile_no">Mobile</string>
+    <string name="dashboard_title">Dashboard</string>
+    <string name="nav_categories">Categories</string>
+    <string name="nav_cart">Cart</string>
+    <string name="nav_home">Home</string>
 </resources>

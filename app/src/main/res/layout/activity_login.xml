@@ -9,11 +9,26 @@
     tools:context=".view.LoginActivity">
 
     <ImageView
+        android:id="@+id/iv_logo"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="0dp"
         android:src="@drawable/ic_shopping_cart"
+        app:layout_constraintBottom_toTopOf="@id/tv_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/common_margin"
+        android:text="Login"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toTopOf="@id/et_layout_email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_logo" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/et_layout_email"
@@ -21,13 +36,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/common_margin"
-        app:layout_constraintBottom_toTopOf="@id/et_layout_password">
+        app:layout_constraintBottom_toTopOf="@id/et_layout_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_login">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:drawableEnd="@drawable/ic_email_icon"
+            android:drawableEnd="@drawable/ic_email"
             android:hint="@string/hint_email" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -40,15 +58,17 @@
         android:layout_margin="@dimen/common_margin"
         app:endIconTint="@color/purple_500"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_password"
-            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:drawableEnd="@drawable/ic_password_icon"
-            android:hint="@string/hint_password" />
+            android:drawableEnd="@drawable/ic_password"
+            android:hint="@string/hint_password"
+            android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

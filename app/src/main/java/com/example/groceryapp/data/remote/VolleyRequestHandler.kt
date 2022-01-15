@@ -7,11 +7,17 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.groceryapp.data.model.User
+import com.example.groceryapp.data.model.category.Category
+import com.example.groceryapp.data.model.category.CategoryResponse
 import com.example.groceryapp.presenter.login.LoginContract
 import com.google.android.material.snackbar.Snackbar
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import org.json.JSONObject
+import java.lang.Exception
 
 class VolleyRequestHandler(val context: Context) {
     var queue: RequestQueue = Volley.newRequestQueue(context)
@@ -32,6 +38,10 @@ class VolleyRequestHandler(val context: Context) {
             data,
             {
                 val message = it.getString("message")
+                val user = it.getJSONObject("user")
+                val emailId = user.getString("email_id")
+                val password = user.getString("password")
+
                 if (it.getInt("status") != 0) {
                     Toast.makeText(context, message, Toast.LENGTH_LONG)
                         .show()  // I want this to be a Snackbar, probably
@@ -39,6 +49,7 @@ class VolleyRequestHandler(val context: Context) {
                 } else {
                     callback.onSuccess()
                 }
+                Log.d(TAG_USER_INFO, "UN: $emailId, PW: $password")
                 Log.d(TAG_REQUEST_MESSAGE, message)
             },
             {
@@ -51,7 +62,7 @@ class VolleyRequestHandler(val context: Context) {
     }
 
 
-    fun login(emailId: String, password: String, rememberMe: Boolean, callback: ResponseCallback) {
+    fun login(emailId: String, password: String, callback: ResponseCallback) {
         val data = JSONObject()
         data.put(APIConstants.KEY_EMAIL_ID, emailId)
         data.put(APIConstants.KEY_PASSWORD, password)
@@ -76,18 +87,18 @@ class VolleyRequestHandler(val context: Context) {
                     val mobileNo = user.getString("mobile_no")
                     val emailId = user.getString("email_id")
 
-                    if (rememberMe) {
-                        val sharedPreferences = context.getSharedPreferences(
-                            "login_details",
-                            AppCompatActivity.MODE_PRIVATE
-                        )
-                        val editor = sharedPreferences.edit()
-                        editor.putString("user_id", userId)
-                        editor.putString("full_name", fullName)
-                        editor.putString("mobile_no", mobileNo)
-                        editor.putString("email_id", emailId)
-                        editor.apply()
-                    }
+
+                    val sharedPreferences = context.getSharedPreferences(
+                        "login_details",
+                        AppCompatActivity.MODE_PRIVATE
+                    )
+                    val editor = sharedPreferences.edit()
+                    editor.putString("user_id", userId)
+                    editor.putString("full_name", fullName)
+                    editor.putString("mobile_no", mobileNo)
+                    editor.putString("email_id", emailId)
+                    editor.apply()
+
 
                     callback.onSuccess()
                 }
@@ -102,9 +113,50 @@ class VolleyRequestHandler(val context: Context) {
         queue.add(request)
     }
 
+    fun getCategories(callback: ResponseCallback) : List<Category> {
+        val url = "${APIConstants.BASE_URL}${APIConstants.ENDPOINT_CATEGORY}"
+        Log.d(TAG_REQUEST_URL, url)
+        var categories = emptyList<Category>()
+        var isComplete = false
+        val request = StringRequest(
+            Request.Method.GET,
+            url,
+            {
+                val typeToken = object: TypeToken<CategoryResponse>() {}
+                val gson = Gson()
+                try {
+                    val response: CategoryResponse = gson.fromJson(it, typeToken.type)
+                    if (response.status != 0) {
+                        Log.d(TAG_REQUEST_MESSAGE, response.message)
+                        callback.onFailure()
+                    } else {
+                        categories = response.categories
+                        isComplete = true
+                        callback.onSuccess()
+                    }
+                } catch (e: Exception) {
+                    Log.e(TAG_GSON_ERROR, e.toString())
+                    e.printStackTrace()
+                    callback.onFailure()
+                }
+            },
+            {
+                Log.e(TAG_VOLLEY_ERROR, it.toString())
+                it.printStackTrace()
+                callback.onFailure()
+            }
+        )
+        queue.add(request)
+        while (true)
+            if (isComplete)
+                return categories
+    }
+
     companion object {
         const val TAG_REQUEST_URL = "RequestURL"
         const val TAG_REQUEST_MESSAGE = "RequestMessage"
         const val TAG_VOLLEY_ERROR = "VolleyError"
+        const val TAG_USER_INFO = "UserInfo"
+        const val TAG_GSON_ERROR = "GsonError"
     }
 }
