@@ -12,8 +12,6 @@ import com.android.volley.toolbox.Volley
 import com.example.groceryapp.data.model.User
 import com.example.groceryapp.data.model.category.Category
 import com.example.groceryapp.data.model.category.CategoryResponse
-import com.example.groceryapp.presenter.login.LoginContract
-import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.json.JSONObject
@@ -21,6 +19,7 @@ import java.lang.Exception
 
 class VolleyRequestHandler(val context: Context) {
     var queue: RequestQueue = Volley.newRequestQueue(context)
+    lateinit var categories: List<Category>
 
     fun register(user: User, callback: ResponseCallback) {
         val data = JSONObject()
@@ -60,7 +59,6 @@ class VolleyRequestHandler(val context: Context) {
         )
         queue.add(request)
     }
-
 
     fun login(emailId: String, password: String, callback: ResponseCallback) {
         val data = JSONObject()
@@ -113,16 +111,15 @@ class VolleyRequestHandler(val context: Context) {
         queue.add(request)
     }
 
-    fun getCategories(callback: ResponseCallback) : List<Category> {
+    fun setCategories(callback: ResponseCallback) {
         val url = "${APIConstants.BASE_URL}${APIConstants.ENDPOINT_CATEGORY}"
         Log.d(TAG_REQUEST_URL, url)
-        var categories = emptyList<Category>()
-        var isComplete = false
+
         val request = StringRequest(
             Request.Method.GET,
             url,
             {
-                val typeToken = object: TypeToken<CategoryResponse>() {}
+                val typeToken = object : TypeToken<CategoryResponse>() {}
                 val gson = Gson()
                 try {
                     val response: CategoryResponse = gson.fromJson(it, typeToken.type)
@@ -130,8 +127,7 @@ class VolleyRequestHandler(val context: Context) {
                         Log.d(TAG_REQUEST_MESSAGE, response.message)
                         callback.onFailure()
                     } else {
-                        categories = response.categories
-                        isComplete = true
+                        this.categories = response.categories
                         callback.onSuccess()
                     }
                 } catch (e: Exception) {
@@ -147,9 +143,6 @@ class VolleyRequestHandler(val context: Context) {
             }
         )
         queue.add(request)
-        while (true)
-            if (isComplete)
-                return categories
     }
 
     companion object {

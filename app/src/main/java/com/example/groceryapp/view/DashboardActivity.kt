@@ -27,6 +27,7 @@ class DashboardActivity : AppCompatActivity() {
                 it.isChecked = true
                 this.drawerLayout.closeDrawers()
 
+
                 true
             }
         }

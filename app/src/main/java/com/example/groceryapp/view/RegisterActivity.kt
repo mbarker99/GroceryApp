@@ -6,7 +6,6 @@ import android.view.View
 import com.example.groceryapp.data.model.User
 import com.example.groceryapp.data.remote.VolleyRequestHandler
 import com.example.groceryapp.databinding.ActivityRegisterBinding
-import com.example.groceryapp.presenter.login.LoginPresenter
 import com.example.groceryapp.presenter.register.RegisterContract
 import com.example.groceryapp.presenter.register.RegisterPresenter
 

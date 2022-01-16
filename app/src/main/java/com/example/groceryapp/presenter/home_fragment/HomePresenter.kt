@@ -1,22 +1,27 @@
 package com.example.groceryapp.presenter.home_fragment
 
+import com.example.groceryapp.data.model.category.Category
 import com.example.groceryapp.data.remote.ResponseCallback
 import com.example.groceryapp.data.remote.VolleyRequestHandler
 
 class HomePresenter(val volleyRequestHandler: VolleyRequestHandler, val view: HomeContract.View) :
     HomeContract.Presenter {
-    override fun getCategories() {
+
+    override fun getCategories(): List<Category> {
         view.onLoad(true)
-        val categories = volleyRequestHandler.getCategories(object: ResponseCallback {
+        var categories = emptyList<Category>()
+        volleyRequestHandler.setCategories(object : ResponseCallback {
             override fun onSuccess() {
-                TODO("Not yet implemented")
+                categories = volleyRequestHandler.categories
+                view.setResult(categories)
+                view.onLoad(false)
             }
 
             override fun onFailure() {
                 view.onLoad(false)
             }
-
         })
+        return categories
     }
 
 }
