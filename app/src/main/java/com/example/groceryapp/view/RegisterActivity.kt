@@ -27,6 +27,7 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View {
         }
     }
 
+    // TODO : add error handling for input formats
     private fun register() {
         binding.apply {
             presenter.register(

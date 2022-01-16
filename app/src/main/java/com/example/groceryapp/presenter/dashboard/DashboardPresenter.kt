@@ -9,16 +9,13 @@ class DashboardPresenter(
 ) : DashboardContract.Presenter {
 
     override fun logout() {
-
-        view.onLoad(true)
         volleyRequestHandler.logout(object: ResponseCallback {
             override fun onSuccess() {
-               view.onLoad(false)
                 view.setResult()
             }
 
             override fun onFailure() {
-                view.onLoad(false)
+
             }
 
         })

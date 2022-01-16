@@ -20,7 +20,8 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/purple_500"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:menu="@menu/menu_toolbar">
+            app:menu="@menu/menu_toolbar" >
+
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -36,15 +37,16 @@
                     android:src="@drawable/ic_menu"/>
 
                 <TextView
-                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:textStyle="bold"
                     android:textColor="@color/white"
                     android:textSize="20sp"
-                    android:id="@+id/title_text_view"
-                    android:layout_width="200dp"
+                    android:id="@+id/tv_title"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/dashboard_title"
                     android:ellipsize="end"/>
+
 
             </LinearLayout>
 
@@ -61,6 +63,7 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
+        app:headerLayout="@layout/nav_header"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
