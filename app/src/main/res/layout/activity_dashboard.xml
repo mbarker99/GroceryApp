@@ -8,10 +8,11 @@
     tools:context=".view.DashboardActivity"
     android:fitsSystemWindows="true">
 
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -50,14 +51,13 @@
         </androidx.appcompat.widget.Toolbar>
 
         <fragment
-            android:name="com.example.groceryapp.view.fragment.HomeFragment"
-            tools:layout="@layout/fragment_home"
             android:id="@+id/fragment_container"
-            android:layout_marginTop="?attr/actionBarSize"
+            tools:layout="@layout/fragment_home"
+            android:name="com.example.groceryapp.view.fragment.HomeFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-    </FrameLayout>
+    </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
@@ -66,50 +66,5 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:menu="@menu/menu_navigation_drawer" />
-
-   <!-- <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/et_layout_search"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:boxCornerRadiusBottomEnd="30dp"
-        app:boxCornerRadiusBottomStart="30dp"
-        app:boxCornerRadiusTopEnd="30dp"
-        app:boxCornerRadiusTopStart="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:drawableEnd="@drawable/ic_search"
-            android:gravity="center_vertical"
-            android:hint="Search for a product..." />
-
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_marginTop="@dimen/common_margin"
-        android:background="@color/purple_500"
-        app:layout_constraintBottom_toTopOf="@id/rv_categories"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_layout_search" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_categories"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/common_margin"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider" />-->
-
 
 </androidx.drawerlayout.widget.DrawerLayout>

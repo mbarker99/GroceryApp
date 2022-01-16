@@ -1,6 +1,8 @@
 package com.example.groceryapp.data.remote
 
 import android.content.Context
+import android.content.SharedPreferences
+import android.text.method.TextKeyListener.clear
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -135,6 +137,45 @@ class VolleyRequestHandler(val context: Context) {
                     e.printStackTrace()
                     callback.onFailure()
                 }
+            },
+            {
+                Log.e(TAG_VOLLEY_ERROR, it.toString())
+                it.printStackTrace()
+                callback.onFailure()
+            }
+        )
+        queue.add(request)
+    }
+
+    fun logout(callback: ResponseCallback) {
+        val sharedPreferences = context.getSharedPreferences(
+            "login_details",
+            AppCompatActivity.MODE_PRIVATE
+        )
+
+        val emailId = sharedPreferences.getString("email_id", null)
+
+        val data = JSONObject()
+        data.put(APIConstants.KEY_EMAIL_ID, emailId)
+
+        val url = "${APIConstants.BASE_URL}${APIConstants.ENDPOINT_LOGOUT}"
+        Log.d(TAG_REQUEST_URL, url)
+
+        val request = JsonObjectRequest(
+            Request.Method.POST,
+            url,
+            data,
+            {
+                val message = it.getString("message")
+                if (it.getInt("status") != 0) {
+                    Toast.makeText(context, message, Toast.LENGTH_LONG)
+                        .show()  // I want this to be a Snackbar, probably
+                    callback.onFailure()
+                } else {
+                    sharedPreferences.edit().clear().apply()
+                    callback.onSuccess()
+                }
+                Log.d(TAG_REQUEST_MESSAGE, message)
             },
             {
                 Log.e(TAG_VOLLEY_ERROR, it.toString())

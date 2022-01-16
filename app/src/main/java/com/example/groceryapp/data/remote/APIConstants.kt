@@ -1,6 +1,8 @@
 package com.example.groceryapp.data.remote
 
 object APIConstants {
+
+
     // URLS
     const val BASE_URL = "https://psmobitech.com/myshop/index.php/"
     const val BASE_IMAGE_URL = "https://psmobitech.com/myshop/images/"
@@ -9,6 +11,7 @@ object APIConstants {
     const val ENDPOINT_REGISTER = "User/register"
     const val ENDPOINT_LOGIN = "User/auth"
     const val ENDPOINT_CATEGORY = "Category"
+    const val ENDPOINT_LOGOUT = "User/logout"
 
     // KEYS
     const val KEY_FULL_NAME = "full_name"
