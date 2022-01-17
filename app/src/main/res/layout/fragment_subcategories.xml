@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.dashboard.fragment.HomeFragment"
-    android:paddingTop="@dimen/common_padding"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".view.dashboard.fragment.SubcategoriesFragment">
 
     <TextView
-        android:text="Browse Categories"
+        android:text="Browse Subcategories"
         android:textSize="36sp"
         android:layout_gravity="center"
         android:textColor="@color/black"
@@ -18,7 +17,7 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:text="Select a category to view subcategories"
+        android:text="Select a category to view relevant products"
         android:layout_gravity="center"
         android:textStyle="bold"
         android:layout_marginBottom="@dimen/common_margin"
@@ -41,11 +40,9 @@
         android:visibility="gone"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_categories"
-        tools:listitem="@layout/item_view_category"
+        android:id="@+id/rv_subcategories"
+        tools:listitem="@layout/item_view_subcategory"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-
 
 </LinearLayout>

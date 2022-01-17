@@ -15,7 +15,7 @@
             android:name=".view.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".view.DashboardActivity"
+            android:name=".view.dashboard.DashboardActivity"
             android:exported="false" />
         <activity
             android:name=".view.LoginActivity"

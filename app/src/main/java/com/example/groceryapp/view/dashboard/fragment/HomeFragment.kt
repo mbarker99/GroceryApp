@@ -1,4 +1,4 @@
-package com.example.groceryapp.view.fragment
+package com.example.groceryapp.view.dashboard.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,17 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.groceryapp.data.model.category.Category
-import com.example.groceryapp.data.model.category.CategoryAdapter
+import com.example.groceryapp.data.model.response.Category
+import com.example.groceryapp.view.dashboard.CategoryAdapter
 import com.example.groceryapp.data.remote.VolleyRequestHandler
 import com.example.groceryapp.databinding.FragmentHomeBinding
-import com.example.groceryapp.presenter.home_fragment.HomeContract
-import com.example.groceryapp.presenter.home_fragment.HomePresenter
+import com.example.groceryapp.presenter.dashboard.home_fragment.HomeContract
+import com.example.groceryapp.presenter.dashboard.home_fragment.HomePresenter
+import com.example.groceryapp.view.dashboard.OnItemClickListener
 
 class HomeFragment : Fragment(), HomeContract.View {
     lateinit var binding: FragmentHomeBinding
     lateinit var adapter: CategoryAdapter
     lateinit var presenter: HomePresenter
+    lateinit var communicator: Communicator
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +28,9 @@ class HomeFragment : Fragment(), HomeContract.View {
 
         val volleyRequestHandler = VolleyRequestHandler(requireActivity().applicationContext)
         presenter = HomePresenter(volleyRequestHandler, this)
-        adapter = CategoryAdapter(presenter.getCategories())
+        adapter = CategoryAdapter(presenter.getCategories(), activity as OnItemClickListener)
+
+        communicator = activity as Communicator
 
         binding.rvCategories.layoutManager = LinearLayoutManager(activity?.applicationContext)
         binding.rvCategories.adapter = adapter

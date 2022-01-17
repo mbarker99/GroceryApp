@@ -1,12 +1,14 @@
-package com.example.groceryapp.data.model.category
+package com.example.groceryapp.view.dashboard
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.groceryapp.data.model.response.Category
 import com.example.groceryapp.databinding.ItemViewCategoryBinding
 
-class CategoryAdapter(var categories: List<Category>) : RecyclerView.Adapter<CategoryViewHolder>() {
+class CategoryAdapter(var categories: List<Category>, var listener: OnItemClickListener) : RecyclerView.Adapter<CategoryViewHolder>() {
+
     override fun getItemCount(): Int = categories.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
@@ -18,6 +20,11 @@ class CategoryAdapter(var categories: List<Category>) : RecyclerView.Adapter<Cat
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val category = categories[position]
         holder.bind(category)
+
+        holder.itemView.setOnClickListener {
+            listener.onClick(category.category_id)
+        }
+
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -25,5 +32,6 @@ class CategoryAdapter(var categories: List<Category>) : RecyclerView.Adapter<Cat
         this.categories = categories
         notifyDataSetChanged()
     }
+
 
 }

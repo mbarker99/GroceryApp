@@ -1,6 +1,6 @@
-package com.example.groceryapp.presenter.home_fragment
+package com.example.groceryapp.presenter.dashboard.home_fragment
 
-import com.example.groceryapp.data.model.category.Category
+import com.example.groceryapp.data.model.response.Category
 
 class HomeContract {
     interface View {

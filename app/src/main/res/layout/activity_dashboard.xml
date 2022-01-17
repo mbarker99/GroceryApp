@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
-    tools:context=".view.DashboardActivity"
+    tools:context=".view.dashboard.DashboardActivity"
     android:fitsSystemWindows="true">
 
     <LinearLayout
@@ -55,7 +55,7 @@
         <fragment
             android:id="@+id/fragment_container"
             tools:layout="@layout/fragment_home"
-            android:name="com.example.groceryapp.view.fragment.HomeFragment"
+            android:name="com.example.groceryapp.view.dashboard.fragment.HomeFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

@@ -1,4 +1,4 @@
-package com.example.groceryapp.view.fragment
+package com.example.groceryapp.view.dashboard.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

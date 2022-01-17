@@ -1,4 +1,4 @@
-package com.example.groceryapp.data.model.category
+package com.example.groceryapp.data.model.response
 
 data class CategoryResponse(
     val categories: List<Category>,

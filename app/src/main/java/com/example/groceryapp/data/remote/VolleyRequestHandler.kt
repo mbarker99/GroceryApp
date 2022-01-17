@@ -1,8 +1,6 @@
 package com.example.groceryapp.data.remote
 
 import android.content.Context
-import android.content.SharedPreferences
-import android.text.method.TextKeyListener.clear
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -12,8 +10,10 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.groceryapp.data.model.User
-import com.example.groceryapp.data.model.category.Category
-import com.example.groceryapp.data.model.category.CategoryResponse
+import com.example.groceryapp.data.model.response.Category
+import com.example.groceryapp.data.model.response.CategoryResponse
+import com.example.groceryapp.data.model.response.Subcategory
+import com.example.groceryapp.data.model.response.SubcategoryResponse
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.json.JSONObject
@@ -22,6 +22,7 @@ import java.lang.Exception
 class VolleyRequestHandler(val context: Context) {
     var queue: RequestQueue = Volley.newRequestQueue(context)
     lateinit var categories: List<Category>
+    lateinit var subcategories: List<Subcategory>
 
     fun register(user: User, callback: ResponseCallback) {
         val data = JSONObject()
@@ -176,6 +177,40 @@ class VolleyRequestHandler(val context: Context) {
                     callback.onSuccess()
                 }
                 Log.d(TAG_REQUEST_MESSAGE, message)
+            },
+            {
+                Log.e(TAG_VOLLEY_ERROR, it.toString())
+                it.printStackTrace()
+                callback.onFailure()
+            }
+        )
+        queue.add(request)
+    }
+
+    fun setSubcategories(categoryId: String?, callback: ResponseCallback) {
+        val url = "${APIConstants.BASE_URL}${APIConstants.ENDPOINT_SUBCATEGORIES}?${APIConstants.KEY_CATEGORY_ID}=$categoryId"
+        Log.d(TAG_REQUEST_URL, url)
+
+        val request = StringRequest(
+            Request.Method.GET,
+            url,
+            {
+                val typeToken = object : TypeToken<SubcategoryResponse>() {}
+                val gson = Gson()
+                try {
+                    val response: SubcategoryResponse = gson.fromJson(it, typeToken.type)
+                    if (response.status != 0) {
+                        Log.d(TAG_REQUEST_MESSAGE, response.message)
+                        callback.onFailure()
+                    } else {
+                        this.subcategories = response.subcategories
+                        callback.onSuccess()
+                    }
+                } catch (e: Exception) {
+                    Log.e(TAG_GSON_ERROR, e.toString())
+                    e.printStackTrace()
+                    callback.onFailure()
+                }
             },
             {
                 Log.e(TAG_VOLLEY_ERROR, it.toString())

@@ -1,7 +1,8 @@
-package com.example.groceryapp.data.model.category
+package com.example.groceryapp.view.dashboard
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.groceryapp.R
+import com.example.groceryapp.data.model.response.Category
 import com.example.groceryapp.data.remote.APIConstants
 import com.example.groceryapp.databinding.ItemViewCategoryBinding
 import com.squareup.picasso.Picasso
@@ -14,6 +15,7 @@ class CategoryViewHolder(val binding: ItemViewCategoryBinding) :
         Picasso.get().load(imageUrl).placeholder(R.drawable.ic_image_placeholder)
             .into(binding.ivCategoryImage)
         binding.tvCategoriesName.text = category.category_name
+
     }
 
 }
