@@ -10,10 +10,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.groceryapp.data.model.User
-import com.example.groceryapp.data.model.response.Category
-import com.example.groceryapp.data.model.response.CategoryResponse
-import com.example.groceryapp.data.model.response.Subcategory
-import com.example.groceryapp.data.model.response.SubcategoryResponse
+import com.example.groceryapp.data.model.response.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.json.JSONObject
@@ -23,6 +20,7 @@ class VolleyRequestHandler(val context: Context) {
     var queue: RequestQueue = Volley.newRequestQueue(context)
     lateinit var categories: List<Category>
     lateinit var subcategories: List<Subcategory>
+    lateinit var products: List<Product>
 
     fun register(user: User, callback: ResponseCallback) {
         val data = JSONObject()
@@ -204,6 +202,40 @@ class VolleyRequestHandler(val context: Context) {
                         callback.onFailure()
                     } else {
                         this.subcategories = response.subcategories
+                        callback.onSuccess()
+                    }
+                } catch (e: Exception) {
+                    Log.e(TAG_GSON_ERROR, e.toString())
+                    e.printStackTrace()
+                    callback.onFailure()
+                }
+            },
+            {
+                Log.e(TAG_VOLLEY_ERROR, it.toString())
+                it.printStackTrace()
+                callback.onFailure()
+            }
+        )
+        queue.add(request)
+    }
+
+    fun setProducts(subcategoryId: String?, callback: ResponseCallback) {
+        val url = "${APIConstants.BASE_URL}${APIConstants.ENDPOINT_PRODUCTS}$subcategoryId"
+        Log.d(TAG_REQUEST_URL, url)
+
+        val request = StringRequest(
+            Request.Method.GET,
+            url,
+            {
+                val typeToken = object : TypeToken<ProductResponse>() {}
+                val gson = Gson()
+                try {
+                    val response: ProductResponse = gson.fromJson(it, typeToken.type)
+                    if (response.status != 0) {
+                        Log.d(TAG_REQUEST_MESSAGE, response.message)
+                        callback.onFailure()
+                    } else {
+                        this.products = response.products
                         callback.onSuccess()
                     }
                 } catch (e: Exception) {

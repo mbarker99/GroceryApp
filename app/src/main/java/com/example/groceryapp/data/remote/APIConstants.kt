@@ -12,7 +12,8 @@ object APIConstants {
     const val ENDPOINT_LOGIN = "User/auth"
     const val ENDPOINT_CATEGORY = "Category"
     const val ENDPOINT_LOGOUT = "User/logout"
-    const val ENDPOINT_SUBCATEGORIES = "Subcategories"
+    const val ENDPOINT_SUBCATEGORIES = "SubCategory"
+    const val ENDPOINT_PRODUCTS = "SubCategory/products/"
 
     // KEYS
     const val KEY_FULL_NAME = "full_name"

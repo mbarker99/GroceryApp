@@ -18,6 +18,7 @@ class SubcategoriesFragment : Fragment(), SubcategoriesContract.View {
     lateinit var binding: FragmentSubcategoriesBinding
     lateinit var adapter: SubcategoryAdapter
     lateinit var presenter: SubcategoriesPresenter
+    lateinit var communicator: Communicator
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,8 +28,10 @@ class SubcategoriesFragment : Fragment(), SubcategoriesContract.View {
         val volleyRequestHandler = VolleyRequestHandler(requireActivity().applicationContext)
         presenter = SubcategoriesPresenter(volleyRequestHandler, this)
 
-        val categoryId = arguments?.getString("category_id")
+        val categoryId = arguments?.getString("id")
         adapter = SubcategoryAdapter(presenter.getSubcategories(categoryId), activity as OnItemClickListener)
+
+        communicator = activity as Communicator
 
         binding.rvSubcategories.layoutManager = LinearLayoutManager(activity?.applicationContext)
         binding.rvSubcategories.adapter = adapter

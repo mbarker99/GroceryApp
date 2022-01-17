@@ -91,17 +91,21 @@ class DashboardActivity : AppCompatActivity(), DashboardContract.View, Communica
 
     override fun sendData(fragment: Fragment, message: String) {
         val bundle = Bundle()
-        bundle.putString("category_id", message)
+        bundle.putString("id", message)
 
         val transaction = this.supportFragmentManager.beginTransaction()
 
         fragment.arguments = bundle
         transaction.replace(R.id.container, fragment)
-        transaction.addToBackStack("nav")
+        transaction.addToBackStack(null)
         transaction.commit()
     }
 
-    override fun onClick(categoryId: String) {
+    override fun onCategoryClicked(categoryId: String) {
         sendData(SubcategoriesFragment(), categoryId)
+    }
+
+    override fun onSubcategoryClicked(subCategoryId: String) {
+        sendData(ProductsFragment(), subCategoryId)
     }
 }

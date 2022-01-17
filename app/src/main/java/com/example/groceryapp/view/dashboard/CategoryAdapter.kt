@@ -22,7 +22,7 @@ class CategoryAdapter(var categories: List<Category>, var listener: OnItemClickL
         holder.bind(category)
 
         holder.itemView.setOnClickListener {
-            listener.onClick(category.category_id)
+            listener.onCategoryClicked(category.category_id)
         }
 
     }
