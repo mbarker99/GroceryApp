@@ -44,17 +44,25 @@ class DashboardActivity : AppCompatActivity(), DashboardContract.View, Communica
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
 
+        val transaction = fragmentManager.beginTransaction()
+        transaction.replace(R.id.container, HomeFragment())
+            .addToBackStack(null)
+            .commit()
+
         binding.navigationView.setNavigationItemSelectedListener {
             it.isChecked = true
             binding.drawerLayout.closeDrawers()
 
-            val transaction = fragmentManager.beginTransaction()
             when (it.itemId) {
                 R.id.nav_item_home -> {
-                    transaction.replace(R.id.container, HomeFragment()).commit()
+                    transaction.replace(R.id.container, HomeFragment())
+                        .addToBackStack(null)
+                        .commit()
                 }
                 R.id.nav_item_cart -> {
-                    transaction.replace(R.id.container, CartFragment()).commit()
+                    transaction.replace(R.id.container, CartFragment())
+                        .addToBackStack(null)
+                        .commit()
                 }
                 R.id.nav_item_account -> {
                     transaction.replace(R.id.container, AccountFragment()).commit()
