@@ -23,4 +23,22 @@ class ProductsPresenter(val volleyRequestHandler: VolleyRequestHandler, val view
         })
         return products
     }
+
+    override fun getSearchedProductDetails(search: String): List<Product> {
+        view.onLoad(true)
+        var searchResults: List<Product> = emptyList<Product>()
+        volleyRequestHandler.setSearchedProductDetails(search, object: ResponseCallback {
+            override fun onSuccess() {
+                searchResults = volleyRequestHandler.searchResults
+                view.setResult(searchResults)
+                view.onLoad(false)
+            }
+
+            override fun onFailure() {
+                view.onLoad(false)
+            }
+
+        })
+        return searchResults
+    }
 }

@@ -11,5 +11,6 @@ class ProductsContract {
 
     interface Presenter {
         fun getProducts(subcategoryId: String?): List<Product>
+        fun getSearchedProductDetails(search: String) : List<Product>
     }
 }

@@ -1,33 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.dashboard.fragment.CartFragment"
     android:orientation="vertical"
-    android:paddingTop="@dimen/common_padding">
+    android:paddingTop="@dimen/common_padding"
+    tools:context=".view.dashboard.fragment.CartFragment">
 
     <TextView
-        android:text="My Cart"
-        android:textSize="36sp"
-        android:layout_gravity="center"
-        android:textColor="@color/black"
-        android:textStyle="bold"
+        android:id="@+id/cart_title"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:text="You have no items in your cart."
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:text="@string/my_cart_title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fragment_title_size"
         android:textStyle="bold"
         android:layout_marginBottom="@dimen/common_margin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
+        android:id="@+id/divider"
         android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:background="@color/purple_500"/>
+        android:layout_height="@dimen/divider_view_height"
+        android:background="@color/purple_500"
+        app:layout_constraintBottom_toTopOf="@id/rv_cart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cart_title" />
 
-</LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_cart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/tv_total"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider" />
+
+    <TextView
+        android:id="@+id/tv_total"
+        tools:text="Total"
+        android:layout_margin="@dimen/common_margin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/btn_add_to_cart"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/btn_add_to_cart"
+        android:text="Checkout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rv_cart" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,12 +15,15 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.json.JSONObject
 import java.lang.Exception
+import java.net.URLEncoder
 
 class VolleyRequestHandler(val context: Context) {
     var queue: RequestQueue = Volley.newRequestQueue(context)
     lateinit var categories: List<Category>
     lateinit var subcategories: List<Subcategory>
     lateinit var products: List<Product>
+    lateinit var productDetails: Product
+    lateinit var searchResults: List<Product>
 
     fun register(user: User, callback: ResponseCallback) {
         val data = JSONObject()
@@ -236,6 +239,75 @@ class VolleyRequestHandler(val context: Context) {
                         callback.onFailure()
                     } else {
                         this.products = response.products
+                        callback.onSuccess()
+                    }
+                } catch (e: Exception) {
+                    Log.e(TAG_GSON_ERROR, e.toString())
+                    e.printStackTrace()
+                    callback.onFailure()
+                }
+            },
+            {
+                Log.e(TAG_VOLLEY_ERROR, it.toString())
+                it.printStackTrace()
+                callback.onFailure()
+            }
+        )
+        queue.add(request)
+    }
+
+    fun setProductDetails(productId: String?, callback: ResponseCallback) {
+        val url = "${APIConstants.BASE_URL}${APIConstants.ENDPOINT_PRODUCT_DETAILS}$productId"
+        Log.d(TAG_REQUEST_URL, url)
+
+        val request = StringRequest(
+            Request.Method.GET,
+            url,
+            {
+                val typeToken = object : TypeToken<ProductDetailsResponse>() {}
+                val gson = Gson()
+                try {
+                    val response: ProductDetailsResponse = gson.fromJson(it, typeToken.type)
+                    if (response.status != 0) {
+                        Log.d(TAG_REQUEST_MESSAGE, response.message)
+                        callback.onFailure()
+                    } else {
+                        this.productDetails = response.product
+                        callback.onSuccess()
+                    }
+                } catch (e: Exception) {
+                    Log.e(TAG_GSON_ERROR, e.toString())
+                    e.printStackTrace()
+                    callback.onFailure()
+                }
+            },
+            {
+                Log.e(TAG_VOLLEY_ERROR, it.toString())
+                it.printStackTrace()
+                callback.onFailure()
+            }
+        )
+        queue.add(request)
+    }
+
+    fun setSearchedProductDetails(search: String?, callback: ResponseCallback) {
+        val encodedSearch = URLEncoder.encode(search, "UTF-8")
+        val url = "${APIConstants.BASE_URL}${APIConstants.ENDPOINT_PRODUCT_SEARCH}?${APIConstants.KEY_QUERY}=$encodedSearch"
+        Log.d(TAG_REQUEST_URL, url)
+
+        val request = StringRequest(
+            Request.Method.GET,
+            url,
+            {
+                val typeToken = object : TypeToken<SearchResponse>() {}
+                val gson = Gson()
+                try {
+                    val response: SearchResponse = gson.fromJson(it, typeToken.type)
+                    if (response.status != 0) {
+                        Log.d(TAG_REQUEST_MESSAGE, response.message)
+                        callback.onFailure()
+                    } else {
+                        this.searchResults = response.products
                         callback.onSuccess()
                     }
                 } catch (e: Exception) {

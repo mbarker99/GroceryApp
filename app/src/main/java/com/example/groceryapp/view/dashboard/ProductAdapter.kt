@@ -20,6 +20,14 @@ class ProductAdapter(var products: List<Product>, val listener: OnItemClickListe
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = products[position]
         holder.bind(product)
+
+        holder.itemView.setOnClickListener {
+            listener.onProductClicked(product.product_id)
+        }
+
+        holder.binding.btnAddToCart.setOnClickListener {
+            listener.onAddToCartClicked(position, product)
+        }
     }
 
     override fun getItemCount(): Int = products.size

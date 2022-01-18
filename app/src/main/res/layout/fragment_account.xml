@@ -4,24 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.dashboard.fragment.AccountFragment"
     android:orientation="vertical"
     android:paddingTop="@dimen/common_padding"
-    >
+    tools:context=".view.dashboard.fragment.AccountFragment">
 
     <TextView
-        android:text="My Account"
-        android:textSize="36sp"
-        android:layout_gravity="center"
-        android:textColor="@color/black"
-        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/common_margin"/>
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/common_margin"
+        android:text="My Account"
+        android:textColor="@color/black"
+        android:textSize="36sp"
+        android:textStyle="bold" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="4dp"
-        android:background="@color/purple_500"/>
+        android:background="@color/purple_500" />
 
 </LinearLayout>

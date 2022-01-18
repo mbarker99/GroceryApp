@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/common_padding"
-    tools:actionBarNavMode="list"
     tools:context=".view.LoginActivity">
 
     <ImageView
@@ -23,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/common_margin"
-        android:text="Login"
+        android:text="@string/login_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toTopOf="@id/et_layout_email"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,9 +86,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-
-        android:text="Login"
-        app:cornerRadius="36dp"
+        android:text="@string/login_title"
+        app:cornerRadius="@dimen/btn_corner_radius"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -99,7 +97,7 @@
         android:id="@+id/tv_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/register_string_margin_top"
         android:clickable="true"
         android:text="@string/link_register"
         app:layout_constraintEnd_toEndOf="parent"

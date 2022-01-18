@@ -36,6 +36,7 @@
             tools:text="Product Name" />
 
         <ImageView
+            android:id="@+id/btn_add_to_cart"
             android:src="@drawable/ic_shopping_cart"
             android:layout_width="32dp"
             android:layout_height="32dp"

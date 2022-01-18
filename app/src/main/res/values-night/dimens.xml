@@ -2,4 +2,11 @@
 <resources>
     <dimen name="common_margin">16dp</dimen>
     <dimen name="cardview_padding">6dp</dimen>
+    <dimen name="padding_image_right">20dp</dimen>
+    <dimen name="toolbar_title_text_size">20sp</dimen>
+    <dimen name="btn_corner_radius">36dp</dimen>
+    <dimen name="register_string_margin_top">16dp</dimen>
+    <dimen name="register_fragment_padding_top">90dp</dimen>
+    <dimen name="fragment_title_size">36sp</dimen>
+    <dimen name="divider_view_height">4dp</dimen>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.groceryapp.presenter.dashboard
 
+import com.example.groceryapp.data.model.response.Product
 import com.example.groceryapp.data.remote.ResponseCallback
 import com.example.groceryapp.data.remote.VolleyRequestHandler
 
@@ -19,6 +20,10 @@ class DashboardPresenter(
             }
 
         })
+    }
+
+    override fun getSearchedProductDetails(productId: String): Product? {
+        return null
     }
 
 }

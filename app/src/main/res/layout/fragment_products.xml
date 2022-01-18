@@ -6,7 +6,6 @@
     android:orientation="vertical"
     android:paddingTop="@dimen/common_padding"
     tools:context=".view.dashboard.fragment.ProductsFragment"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView

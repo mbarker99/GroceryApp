@@ -4,15 +4,20 @@ import android.app.AlertDialog
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.SearchView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.groceryapp.R
+import com.example.groceryapp.data.local.DatabaseAccess
+import com.example.groceryapp.data.model.response.Product
 import com.example.groceryapp.data.remote.VolleyRequestHandler
 import com.example.groceryapp.databinding.ActivityDashboardBinding
 import com.example.groceryapp.presenter.dashboard.DashboardContract
 import com.example.groceryapp.presenter.dashboard.DashboardPresenter
 import com.example.groceryapp.view.dashboard.fragment.*
+import java.net.URLEncoder
 
 
 class DashboardActivity : AppCompatActivity(), DashboardContract.View, Communicator,
@@ -21,6 +26,8 @@ class DashboardActivity : AppCompatActivity(), DashboardContract.View, Communica
     lateinit var presenter: DashboardPresenter
     lateinit var volleyRequestHandler: VolleyRequestHandler
     var fragmentManager = supportFragmentManager
+    lateinit var dao: DatabaseAccess
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardBinding.inflate(layoutInflater)
@@ -30,6 +37,8 @@ class DashboardActivity : AppCompatActivity(), DashboardContract.View, Communica
 
     private fun setUpEvents() {
 
+
+        dao = DatabaseAccess(this)
         volleyRequestHandler = VolleyRequestHandler(this)
         presenter = DashboardPresenter(volleyRequestHandler, this)
 
@@ -44,15 +53,11 @@ class DashboardActivity : AppCompatActivity(), DashboardContract.View, Communica
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
 
-        val transaction = fragmentManager.beginTransaction()
-        transaction.replace(R.id.container, HomeFragment())
-            .addToBackStack(null)
-            .commit()
-
         binding.navigationView.setNavigationItemSelectedListener {
             it.isChecked = true
             binding.drawerLayout.closeDrawers()
 
+            val transaction = fragmentManager.beginTransaction()
             when (it.itemId) {
                 R.id.nav_item_home -> {
                     transaction.replace(R.id.container, HomeFragment())
@@ -72,11 +77,11 @@ class DashboardActivity : AppCompatActivity(), DashboardContract.View, Communica
                     val dialog = AlertDialog.Builder(this).apply {
                         setTitle("Logout")
                         setMessage("Are you sure you want to logout?")
-                        setPositiveButton("Yes") { dialog, which ->
+                        setPositiveButton("Yes") { dialog, _ ->
                             logout()
                             dialog.dismiss()
                         }
-                        setNegativeButton("No") { dialog, which ->
+                        setNegativeButton("No") { dialog, _ ->
                             dialog.dismiss()
                         }
                     }.create()
@@ -85,6 +90,10 @@ class DashboardActivity : AppCompatActivity(), DashboardContract.View, Communica
             }
 
             true
+        }
+
+        binding.btnSearch.setOnClickListener {
+            sendData(ProductsFragment(), binding.etSearch.text.toString(), true)
         }
 
     }
@@ -97,8 +106,11 @@ class DashboardActivity : AppCompatActivity(), DashboardContract.View, Communica
         finish()
     }
 
-    override fun sendData(fragment: Fragment, message: String) {
+    override fun sendData(fragment: Fragment, message: String, isSearch: Boolean) {
+        if (isSearch)
+            binding.etSearch.text.clear()
         val bundle = Bundle()
+        bundle.putBoolean("isSearch", isSearch)
         bundle.putString("id", message)
 
         val transaction = this.supportFragmentManager.beginTransaction()
@@ -115,5 +127,14 @@ class DashboardActivity : AppCompatActivity(), DashboardContract.View, Communica
 
     override fun onSubcategoryClicked(subCategoryId: String) {
         sendData(ProductsFragment(), subCategoryId)
+    }
+
+    override fun onProductClicked(productId: String) {
+        sendData(ProductDetailsFragment(), productId)
+    }
+
+    override fun onAddToCartClicked(position: Int, product: Product) {
+        dao.addCartItem(product)
+        Toast.makeText(this, "Item added to cart.", Toast.LENGTH_LONG).show()
     }
 }

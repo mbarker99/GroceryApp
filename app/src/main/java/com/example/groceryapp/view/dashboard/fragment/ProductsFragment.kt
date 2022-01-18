@@ -34,7 +34,12 @@ class ProductsFragment : Fragment(), ProductsContract.View {
         presenter = ProductsPresenter(volleyRequestHandler, this)
 
         val subCategoryId = arguments?.getString("id")
-        adapter = ProductAdapter(presenter.getProducts(subCategoryId), activity as OnItemClickListener)
+        val isSearch =  arguments?.getBoolean("isSearch")
+
+        adapter = if (isSearch == false)
+            ProductAdapter(presenter.getProducts(subCategoryId), activity as OnItemClickListener)
+        else
+            ProductAdapter(presenter.getSearchedProductDetails(subCategoryId.toString()), activity as OnItemClickListener)
 
         binding.rvSubcategories.layoutManager = LinearLayoutManager(activity?.applicationContext)
         binding.rvSubcategories.adapter = adapter

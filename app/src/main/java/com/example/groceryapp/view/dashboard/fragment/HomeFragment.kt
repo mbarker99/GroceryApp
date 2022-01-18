@@ -18,7 +18,6 @@ class HomeFragment : Fragment(), HomeContract.View {
     lateinit var binding: FragmentHomeBinding
     lateinit var adapter: CategoryAdapter
     lateinit var presenter: HomePresenter
-    lateinit var communicator: Communicator
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +29,7 @@ class HomeFragment : Fragment(), HomeContract.View {
         presenter = HomePresenter(volleyRequestHandler, this)
         adapter = CategoryAdapter(presenter.getCategories(), activity as OnItemClickListener)
 
-        communicator = activity as Communicator
+
 
         binding.rvCategories.layoutManager = LinearLayoutManager(activity?.applicationContext)
         binding.rvCategories.adapter = adapter

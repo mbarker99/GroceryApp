@@ -13,5 +13,12 @@
     <string name="hint_search">Search for a product...</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_title">Login</string>
+    <string name="register_title">Register for an account</string>
+    <string name="btn_register">Register</string>
+    <string name="my_cart_title">My Cart</string>
+    <string name="you_have_no_items_in_your_cart">You have no items in your cart.</string>
+    <string name="search">Search</string>
+    <string name="btn_checkout">Checkout</string>
 
 </resources>
