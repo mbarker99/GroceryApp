@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:paddingTop="@dimen/common_padding"
-    tools:context=".view.dashboard.fragment.AccountFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.dashboard.fragment.AddressesFragment">
 
     <TextView
-        android:id="@+id/account_title"
+        android:id="@+id/addresses_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="My Account"
+        android:text="My Addresses"
         android:textColor="@color/black"
         android:textSize="36sp"
         android:textStyle="bold"
@@ -27,28 +26,18 @@
         android:layout_height="4dp"
         android:background="@color/purple_500"
         android:layout_marginTop="@dimen/common_margin"
-        app:layout_constraintTop_toBottomOf="@+id/account_title"
+        app:layout_constraintTop_toBottomOf="@+id/addresses_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <Button
-        android:id="@+id/btn_view_addresses"
-        android:text="View Addresses"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_addresses"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        tools:listitem="@layout/item_view_addresses"
         app:layout_constraintTop_toBottomOf="@id/divider"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btn_add_address"
-        android:layout_marginTop="@dimen/common_margin"/>
-
-    <Button
-        android:id="@+id/btn_add_address"
-        android:text="Add Address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/divider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_view_addresses"
-        android:layout_marginTop="@dimen/common_margin"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

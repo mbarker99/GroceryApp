@@ -24,6 +24,7 @@ class VolleyRequestHandler(val context: Context) {
     lateinit var products: List<Product>
     lateinit var productDetails: Product
     lateinit var searchResults: List<Product>
+    lateinit var addresses: List<Address>
 
     fun register(user: User, callback: ResponseCallback) {
         val data = JSONObject()
@@ -308,6 +309,73 @@ class VolleyRequestHandler(val context: Context) {
                         callback.onFailure()
                     } else {
                         this.searchResults = response.products
+                        callback.onSuccess()
+                    }
+                } catch (e: Exception) {
+                    Log.e(TAG_GSON_ERROR, e.toString())
+                    e.printStackTrace()
+                    callback.onFailure()
+                }
+            },
+            {
+                Log.e(TAG_VOLLEY_ERROR, it.toString())
+                it.printStackTrace()
+                callback.onFailure()
+            }
+        )
+        queue.add(request)
+    }
+
+    fun addAddress(userId: Int, title: String, address: String, callback: ResponseCallback) {
+        val data = JSONObject()
+        data.put(APIConstants.KEY_USER_ID, userId)
+        data.put(APIConstants.KEY_TITLE, title)
+        data.put(APIConstants.KEY_ADDRESS, address)
+
+        val url = "${APIConstants.BASE_URL}${APIConstants.ENDPOINT_ADD_ADDRESS}"
+        Log.d(TAG_REQUEST_URL, url)
+
+        val request = JsonObjectRequest(
+            Request.Method.POST,
+            url,
+            data,
+            {
+                val message = it.getString("message")
+                if (it.getInt("status") != 0) {
+                    Toast.makeText(context, message, Toast.LENGTH_LONG)
+                        .show()
+                    callback.onFailure()
+                } else {
+                    callback.onSuccess()
+                }
+                Log.d(TAG_REQUEST_MESSAGE, message)
+            },
+            {
+                Log.e(TAG_VOLLEY_ERROR, it.toString())
+                it.printStackTrace()
+                callback.onFailure()
+            }
+        )
+        queue.add(request)
+    }
+
+    fun setAddresses(userId: String?, callback: ResponseCallback) {
+        val url = "${APIConstants.BASE_URL}${APIConstants.ENPOINT_GET_ADDRESSES}/$userId"
+        Log.d(TAG_REQUEST_URL, url)
+
+        val request = StringRequest(
+            Request.Method.GET,
+            url,
+            {
+                val typeToken = object : TypeToken<AddressResponse>() {}
+                val gson = Gson()
+                try {
+                    val response: AddressResponse = gson.fromJson(it, typeToken.type)
+                    if (response.status != 0) {
+                        Log.d(TAG_REQUEST_MESSAGE, response.message)
+                        callback.onFailure()
+                    } else {
+                        this.addresses = response.addresses
                         callback.onSuccess()
                     }
                 } catch (e: Exception) {

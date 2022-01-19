@@ -36,6 +36,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_cart"
+        tools:listitem="@layout/item_view_cart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/tv_total"
@@ -50,11 +51,11 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/btn_add_to_cart"
+        app:layout_constraintBottom_toTopOf="@id/btn_checkout"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
-        android:id="@+id/btn_add_to_cart"
+        android:id="@+id/btn_checkout"
         android:text="Checkout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

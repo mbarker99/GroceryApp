@@ -29,8 +29,6 @@ class HomeFragment : Fragment(), HomeContract.View {
         presenter = HomePresenter(volleyRequestHandler, this)
         adapter = CategoryAdapter(presenter.getCategories(), activity as OnItemClickListener)
 
-
-
         binding.rvCategories.layoutManager = LinearLayoutManager(activity?.applicationContext)
         binding.rvCategories.adapter = adapter
 

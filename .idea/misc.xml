@@ -17,14 +17,18 @@
         <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/activity_login.xml" value="0.34868421052631576" />
         <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/activity_main.xml" value="0.38333333333333336" />
         <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/activity_register.xml" value="0.512962962962963" />
+        <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/dialog_add_address.xml" value="0.1993421052631579" />
         <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/fragment_account.xml" value="0.20789473684210527" />
-        <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/fragment_cart.xml" value="0.34868421052631576" />
+        <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/fragment_addresses.xml" value="0.1993421052631579" />
+        <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/fragment_cart.xml" value="0.20164473684210527" />
         <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/fragment_categories.xml" value="0.2504273504273504" />
+        <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/fragment_dialog_add_address.xml" value="0.34527687296416937" />
         <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/fragment_home.xml" value="0.261965811965812" />
         <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/fragment_product_details.xml" value="0.34868421052631576" />
         <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/fragment_products.xml" value="0.34868421052631576" />
         <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/fragment_subcategories.xml" value="0.33980263157894736" />
-        <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/item_view_cart.xml" value="0.34868421052631576" />
+        <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/item_view_addresses.xml" value="0.1993421052631579" />
+        <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/item_view_cart.xml" value="0.34527687296416937" />
         <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/item_view_category.xml" value="0.261965811965812" />
         <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/item_view_product.xml" value="0.34868421052631576" />
         <entry key="..\:/Users/michael/AndroidStudioProjects/TrainingProjects/GroceryApp/app/src/main/res/layout/item_view_subcategory.xml" value="0.20789473684210527" />
