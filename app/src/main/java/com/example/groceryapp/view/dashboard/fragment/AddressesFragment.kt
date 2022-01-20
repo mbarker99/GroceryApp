@@ -6,16 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.groceryapp.R
 import com.example.groceryapp.data.model.response.Address
 import com.example.groceryapp.data.remote.VolleyRequestHandler
 import com.example.groceryapp.databinding.FragmentAddressesBinding
 import com.example.groceryapp.presenter.dashboard.address_fragment.AddressContract
 import com.example.groceryapp.presenter.dashboard.address_fragment.AddressPresenter
-import com.example.groceryapp.view.dashboard.AddressAdapter
+import com.example.groceryapp.view.dashboard.recycler.address.AddressAdapter
 
 class AddressesFragment : Fragment(), AddressContract.View {
     lateinit var binding: FragmentAddressesBinding

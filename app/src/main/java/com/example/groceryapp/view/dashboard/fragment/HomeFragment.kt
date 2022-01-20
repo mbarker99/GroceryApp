@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.groceryapp.data.model.response.Category
-import com.example.groceryapp.view.dashboard.CategoryAdapter
+import com.example.groceryapp.view.dashboard.recycler.category.CategoryAdapter
 import com.example.groceryapp.data.remote.VolleyRequestHandler
 import com.example.groceryapp.databinding.FragmentHomeBinding
 import com.example.groceryapp.presenter.dashboard.home_fragment.HomeContract

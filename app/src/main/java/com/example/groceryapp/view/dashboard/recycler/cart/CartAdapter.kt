@@ -1,12 +1,10 @@
-package com.example.groceryapp.view.dashboard
+package com.example.groceryapp.view.dashboard.recycler.cart
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.groceryapp.data.model.CartItem
-import com.example.groceryapp.data.model.response.Product
 import com.example.groceryapp.databinding.ItemViewCartBinding
-import com.example.groceryapp.databinding.ItemViewCategoryBinding
 
 class CartAdapter(var cartList: ArrayList<CartItem>) : RecyclerView.Adapter<CartViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {

@@ -7,4 +7,5 @@ interface OnItemClickListener {
     fun onSubcategoryClicked(subCategoryId: String)
     fun onProductClicked(productId: String)
     fun onAddToCartClicked(position: Int, product: Product)
+    fun onOrderClicked(orderId: String)
 }

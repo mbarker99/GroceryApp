@@ -1,13 +1,12 @@
-package com.example.groceryapp.view.dashboard
+package com.example.groceryapp.view.dashboard.recycler.product
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.groceryapp.data.model.response.Product
-import com.example.groceryapp.data.model.response.Subcategory
-import com.example.groceryapp.databinding.ItemViewCategoryBinding
 import com.example.groceryapp.databinding.ItemViewProductBinding
+import com.example.groceryapp.view.dashboard.OnItemClickListener
 
 class ProductAdapter(var products: List<Product>, val listener: OnItemClickListener) :
     RecyclerView.Adapter<ProductViewHolder>() {

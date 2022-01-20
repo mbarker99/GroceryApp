@@ -12,7 +12,7 @@ import com.example.groceryapp.databinding.FragmentSubcategoriesBinding
 import com.example.groceryapp.presenter.dashboard.subcategories_fragment.SubcategoriesContract
 import com.example.groceryapp.presenter.dashboard.subcategories_fragment.SubcategoriesPresenter
 import com.example.groceryapp.view.dashboard.OnItemClickListener
-import com.example.groceryapp.view.dashboard.SubcategoryAdapter
+import com.example.groceryapp.view.dashboard.recycler.subcategory.SubcategoryAdapter
 
 class SubcategoriesFragment : Fragment(), SubcategoriesContract.View {
     lateinit var binding: FragmentSubcategoriesBinding

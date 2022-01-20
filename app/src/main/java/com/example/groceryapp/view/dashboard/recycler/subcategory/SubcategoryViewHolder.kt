@@ -1,4 +1,4 @@
-package com.example.groceryapp.view.dashboard
+package com.example.groceryapp.view.dashboard.recycler.subcategory
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.groceryapp.R

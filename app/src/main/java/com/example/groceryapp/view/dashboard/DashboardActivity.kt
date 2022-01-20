@@ -72,6 +72,9 @@ class DashboardActivity : AppCompatActivity(), DashboardContract.View, Communica
                 R.id.nav_item_account -> {
                     transaction.replace(R.id.container, AccountFragment()).commit()
                 }
+                R.id.nav_item_orders -> {
+                    transaction.replace(R.id.container, OrdersFragment()).commit()
+                }
                 R.id.nav_item_logout -> {
                     // TODO : make this a custom DialogFragment and add a ProgressBar
                     val dialog = AlertDialog.Builder(this).apply {
@@ -136,5 +139,9 @@ class DashboardActivity : AppCompatActivity(), DashboardContract.View, Communica
     override fun onAddToCartClicked(position: Int, product: Product) {
         dao.addCartItem(product)
         Toast.makeText(this, "Item added to cart.", Toast.LENGTH_LONG).show()
+    }
+
+    override fun onOrderClicked(orderId: String) {
+        sendData(OrderDetailsFragment(), orderId)
     }
 }

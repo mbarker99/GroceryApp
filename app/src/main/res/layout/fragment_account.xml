@@ -51,4 +51,24 @@
         app:layout_constraintStart_toEndOf="@id/btn_view_addresses"
         android:layout_marginTop="@dimen/common_margin"/>
 
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@color/purple_500"
+        android:layout_marginTop="@dimen/common_margin"
+        app:layout_constraintTop_toBottomOf="@id/btn_view_addresses"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/btn_add_payment_method"
+        android:text="Add payment method"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/divider2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/common_margin"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

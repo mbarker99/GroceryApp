@@ -18,6 +18,8 @@ object APIConstants {
     const val ENDPOINT_PRODUCT_SEARCH = "Product/search"
     const val ENDPOINT_ADD_ADDRESS = "User/address"
     const val ENPOINT_GET_ADDRESSES = "User/addresses/"
+    const val ENDPOINT_ORDER = "Order"
+    const val ENDPOINT_GET_ORDERS = "Order/userOrders/"
 
     // KEYS
     const val KEY_FULL_NAME = "full_name"
@@ -29,5 +31,7 @@ object APIConstants {
     const val KEY_USER_ID = "user_id"
     const val KEY_TITLE = "title"
     const val KEY_ADDRESS = "address"
+    const val KEY_DELIVERY_ADDRESS = "delivery_address"
+    const val KEY_ORDER_ID = "order_id"
 
 }

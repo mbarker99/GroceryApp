@@ -1,13 +1,11 @@
-package com.example.groceryapp.view.dashboard
+package com.example.groceryapp.view.dashboard.recycler.address
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.groceryapp.data.model.response.Address
-import com.example.groceryapp.data.model.response.Category
 import com.example.groceryapp.databinding.ItemViewAddressesBinding
-import com.example.groceryapp.databinding.ItemViewCartBinding
 
 class AddressAdapter(var addresses: List<Address>) : RecyclerView.Adapter<AddressViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AddressViewHolder {

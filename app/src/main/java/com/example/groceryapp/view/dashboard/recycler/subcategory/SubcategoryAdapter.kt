@@ -1,4 +1,4 @@
-package com.example.groceryapp.view.dashboard
+package com.example.groceryapp.view.dashboard.recycler.subcategory
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.groceryapp.data.model.response.Subcategory
 import com.example.groceryapp.databinding.ItemViewSubcategoryBinding
+import com.example.groceryapp.view.dashboard.OnItemClickListener
 
 class SubcategoryAdapter(var subcategories: List<Subcategory>, var listener: OnItemClickListener) : RecyclerView.Adapter<SubcategoryViewHolder>() {
 

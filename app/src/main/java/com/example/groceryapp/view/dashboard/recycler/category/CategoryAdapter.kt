@@ -1,4 +1,4 @@
-package com.example.groceryapp.view.dashboard
+package com.example.groceryapp.view.dashboard.recycler.category
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.groceryapp.data.model.response.Category
 import com.example.groceryapp.databinding.ItemViewCategoryBinding
+import com.example.groceryapp.view.dashboard.OnItemClickListener
 
 class CategoryAdapter(var categories: List<Category>, var listener: OnItemClickListener) : RecyclerView.Adapter<CategoryViewHolder>() {
 

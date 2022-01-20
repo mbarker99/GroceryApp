@@ -9,6 +9,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.groceryapp.data.model.CartItem
 import com.example.groceryapp.data.model.User
 import com.example.groceryapp.data.model.response.*
 import com.google.gson.Gson
@@ -25,6 +26,8 @@ class VolleyRequestHandler(val context: Context) {
     lateinit var productDetails: Product
     lateinit var searchResults: List<Product>
     lateinit var addresses: List<Address>
+    lateinit var orders: List<Order>
+    lateinit var orderDetails: Order
 
     fun register(user: User, callback: ResponseCallback) {
         val data = JSONObject()
@@ -190,7 +193,8 @@ class VolleyRequestHandler(val context: Context) {
     }
 
     fun setSubcategories(categoryId: String?, callback: ResponseCallback) {
-        val url = "${APIConstants.BASE_URL}${APIConstants.ENDPOINT_SUBCATEGORIES}?${APIConstants.KEY_CATEGORY_ID}=$categoryId"
+        val url =
+            "${APIConstants.BASE_URL}${APIConstants.ENDPOINT_SUBCATEGORIES}?${APIConstants.KEY_CATEGORY_ID}=$categoryId"
         Log.d(TAG_REQUEST_URL, url)
 
         val request = StringRequest(
@@ -293,7 +297,8 @@ class VolleyRequestHandler(val context: Context) {
 
     fun setSearchedProductDetails(search: String?, callback: ResponseCallback) {
         val encodedSearch = URLEncoder.encode(search, "UTF-8")
-        val url = "${APIConstants.BASE_URL}${APIConstants.ENDPOINT_PRODUCT_SEARCH}?${APIConstants.KEY_QUERY}=$encodedSearch"
+        val url =
+            "${APIConstants.BASE_URL}${APIConstants.ENDPOINT_PRODUCT_SEARCH}?${APIConstants.KEY_QUERY}=$encodedSearch"
         Log.d(TAG_REQUEST_URL, url)
 
         val request = StringRequest(
@@ -376,6 +381,85 @@ class VolleyRequestHandler(val context: Context) {
                         callback.onFailure()
                     } else {
                         this.addresses = response.addresses
+                        callback.onSuccess()
+                    }
+                } catch (e: Exception) {
+                    Log.e(TAG_GSON_ERROR, e.toString())
+                    e.printStackTrace()
+                    callback.onFailure()
+                }
+            },
+            {
+                Log.e(TAG_VOLLEY_ERROR, it.toString())
+                it.printStackTrace()
+                callback.onFailure()
+            }
+        )
+        queue.add(request)
+    }
+
+    fun placeOrder(
+        userId: Int,
+        address: Address,
+        items: List<CartItem>,
+        amount: Int,
+        paymentMethod: String,
+        callback: ResponseCallback
+    ) {
+
+    }
+
+    fun setOrders(userId: String?, callback: ResponseCallback) {
+        val url = "${APIConstants.BASE_URL}${APIConstants.ENDPOINT_GET_ORDERS}/$userId"
+        Log.d(TAG_REQUEST_URL, url)
+
+        val request = StringRequest(
+            Request.Method.GET,
+            url,
+            {
+                val typeToken = object : TypeToken<OrderResponse>() {}
+                val gson = Gson()
+                try {
+                    val response: OrderResponse = gson.fromJson(it, typeToken.type)
+                    if (response.status != 0) {
+                        Log.d(TAG_REQUEST_MESSAGE, response.message)
+                        callback.onFailure()
+                    } else {
+                        this.orders = response.orders
+                        callback.onSuccess()
+                    }
+                } catch (e: Exception) {
+                    Log.e(TAG_GSON_ERROR, e.toString())
+                    e.printStackTrace()
+                    callback.onFailure()
+                }
+            },
+            {
+                Log.e(TAG_VOLLEY_ERROR, it.toString())
+                it.printStackTrace()
+                callback.onFailure()
+            }
+        )
+        queue.add(request)
+    }
+
+    fun setOrderDetails(orderId: String?, callback: ResponseCallback) {
+        val url = "${APIConstants.BASE_URL}${APIConstants.ENDPOINT_ORDER}?${APIConstants.KEY_ORDER_ID}=$orderId"
+        Log.d(TAG_REQUEST_URL, url)
+
+        val request = StringRequest(
+            Request.Method.GET,
+            url,
+            {
+                val typeToken = object : TypeToken<OrderDetailsResponse>() {}
+                val gson = Gson()
+                try {
+                    val response: OrderDetailsResponse = gson.fromJson(it, typeToken.type)
+                    if (response.status != 0) {
+                        Log.d(TAG_REQUEST_MESSAGE, response.message)
+                        callback.onFailure()
+                    } else {
+                        this.orderDetails = response.order
                         callback.onSuccess()
                     }
                 } catch (e: Exception) {
